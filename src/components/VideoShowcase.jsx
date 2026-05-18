@@ -15,7 +15,7 @@ const VideoShowcase = () => {
         "https://plus.unsplash.com/premium_photo-1710409625244-e9ed7e98f67b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       videoUrl: "https://www.instagram.com/reel/DU8HHbMD6em/embed",
     
-      category: "Colaboration",
+      category: "collaboration",
     },
     {
       id: 2,
@@ -33,7 +33,7 @@ const VideoShowcase = () => {
         "https://plus.unsplash.com/premium_photo-1710409625244-e9ed7e98f67b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       videoUrl: "https://www.instagram.com/reel/DVQ_5inklC1/embed",
      
-      category: "Colaboration",
+      category: "collaboration",
     },
     {
       id: 4,
@@ -60,7 +60,7 @@ const VideoShowcase = () => {
         "https://plus.unsplash.com/premium_photo-1710409625244-e9ed7e98f67b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       videoUrl: "https://www.instagram.com/reel/DYGuWJrP2mb/embed",
       
-      category: "Colaboration",
+      category: "collaboration",
     },
   ];
 
