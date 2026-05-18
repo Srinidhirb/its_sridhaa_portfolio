@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { HiPlay } from "react-icons/hi";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { HiPlay, HiX } from "react-icons/hi";
 
 const VideoShowcase = () => {
   const ref = useRef(null);
@@ -169,38 +169,49 @@ const VideoShowcase = () => {
       </div>
 
       {/* Video Modal */}
-      {selectedVideo && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-          onClick={() => setSelectedVideo(null)}
-        >
-          <div
-            className="max-w-5xl w-full"
-            onClick={(e) => e.stopPropagation()}
+      <AnimatePresence>
+        {selectedVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+            onClick={() => setSelectedVideo(null)}
           >
-            <div className="w-full max-w-sm mx-auto aspect-[9/16] rounded-lg overflow-hidden luxury-border luxury-shadow">
-              <iframe
-                width="100%"
-                height="100%"
-                src={selectedVideo.videoUrl}
-                title={selectedVideo.title}
-                frameBorder="0"
-                allowFullScreen
-                className="w-full h-full"
-              />
+            {/* Close Button */}
+            <button
+              className="absolute top-4 right-4 md:top-8 md:right-8 text-white hover:text-gold-500 transition-colors duration-300 z-10"
+              onClick={() => setSelectedVideo(null)}
+              aria-label="Close modal"
+            >
+              <HiX className="text-4xl md:text-5xl" />
+            </button>
+
+            <div
+              className="max-w-5xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="w-full max-w-sm mx-auto aspect-[9/16] rounded-lg overflow-hidden luxury-border luxury-shadow">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={selectedVideo.videoUrl}
+                  title={selectedVideo.title}
+                  frameBorder="0"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+              <div className="mt-6 text-center">
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  {selectedVideo.title}
+                </h3>
+                <p className="text-gold-500">{selectedVideo.category}</p>
+              </div>
             </div>
-            <div className="mt-6 text-center">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                {selectedVideo.title}
-              </h3>
-              <p className="text-gold-500">{selectedVideo.category}</p>
-            </div>
-          </div>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
