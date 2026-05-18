@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { HiCamera, HiFilm, HiBriefcase , HiUsers } from "react-icons/hi";
 
 const About = () => {
@@ -114,15 +115,15 @@ const About = () => {
               </div>
             </div>
 
-            <motion.a
-              href="#contact"
+            <Link
+              to="/contact"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
               className="inline-block px-8 py-3 luxury-gradient text-luxury-darker font-semibold rounded-full hover:shadow-xl hover:shadow-gold-500/40 transition-all duration-300 hover:scale-105"
             >
               Let's Work Together
-            </motion.a>
+            </Link>
           </motion.div>
         </div>
 

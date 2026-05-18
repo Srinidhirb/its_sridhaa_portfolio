@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
 
@@ -15,12 +16,12 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Gallery', href: '#gallery' },
-    { name: 'Videos', href: '#videos' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Gallery', path: '/gallery' },
+    { name: 'Videos', path: '/videos' },
+    { name: 'Testimonials', path: '/testimonials' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   return (
@@ -34,42 +35,54 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-2xl md:text-3xl font-serif font-bold"
-          >
-            <span className="luxury-text-gradient">Sridhaa </span>
-            <span className="text-white"> Visuals</span>
-          </motion.div>
+          <Link to="/">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-2xl md:text-3xl font-serif font-bold cursor-pointer"
+            >
+              <span className="luxury-text-gradient">Sridhaa </span>
+              <span className="text-white"> Visuals</span>
+            </motion.div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navLinks.map((link, index) => (
-              <motion.a
+              <NavLink
                 key={link.name}
-                href={link.href}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
-                className="text-gray-300 hover:text-gold-500 transition-colors duration-300 font-medium"
+                to={link.path}
+                className={({ isActive }) =>
+                  `text-gray-300 transition-colors duration-300 font-medium ${
+                    isActive ? 'text-gold-500' : 'hover:text-gold-500'
+                  }`
+                }
               >
-                {link.name}
-              </motion.a>
+                {({ isActive }) => (
+                  <motion.span
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 * index }}
+                  >
+                    {link.name}
+                  </motion.span>
+                )}
+              </NavLink>
             ))}
           </div>
 
           {/* CTA Button */}
-          <motion.a
-            href="#contact"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="hidden md:block px-6 py-2 luxury-gradient text-luxury-darker font-semibold rounded-full hover:shadow-lg hover:shadow-gold-500/30 transition-all duration-300"
-          >
-            Book Now
-          </motion.a>
+          <Link to="/contact">
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="hidden md:block px-6 py-2 luxury-gradient text-luxury-darker font-semibold rounded-full hover:shadow-lg hover:shadow-gold-500/30 transition-all duration-300"
+            >
+              Book Now
+            </motion.button>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
@@ -92,22 +105,26 @@ const Navbar = () => {
           >
             <div className="px-4 py-6 space-y-4">
               {navLinks.map((link) => (
-                <a
+                <NavLink
                   key={link.name}
-                  href={link.href}
+                  to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-gray-300 hover:text-gold-500 transition-colors duration-300 text-lg"
+                  className={({ isActive }) =>
+                    `block text-lg transition-colors duration-300 ${
+                      isActive ? 'text-gold-500' : 'text-gray-300 hover:text-gold-500'
+                    }`
+                  }
                 >
                   {link.name}
-                </a>
+                </NavLink>
               ))}
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block text-center px-6 py-3 luxury-gradient text-luxury-darker font-semibold rounded-full"
               >
                 Book Now
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
