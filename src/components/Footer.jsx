@@ -6,26 +6,27 @@ import {
   FaHeart,
 } from "react-icons/fa";
 import { HiMail, HiPhone } from "react-icons/hi";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState("");
   const footerLinks = {
     services: [
-      { name: "Wedding Photography", href: "#gallery" },
-      { name: "Pre-Wedding Shoots", href: "#gallery" },
-      { name: "Portrait Sessions", href: "#gallery" },
-      { name: "Temple Photography", href: "#gallery" },
-      { name: "Event Coverage", href: "#gallery" },
-      { name: "Video Editing", href: "#videos" },
+      { name: "Wedding Photography", path: "/gallery" },
+      { name: "Pre-Wedding Shoots", path: "/gallery" },
+      { name: "Portrait Sessions", path: "/gallery" },
+      { name: "Temple Photography", path: "/gallery" },
+      { name: "Event Coverage", path: "/gallery" },
+      { name: "Video Editing", path: "/videos" },
     ],
     quickLinks: [
-      { name: "Home", href: "#home" },
-      { name: "About", href: "#about" },
-      { name: "Gallery", href: "#gallery" },
-      { name: "Videos", href: "#videos" },
-      { name: "Testimonials", href: "#testimonials" },
-      { name: "Contact", href: "#contact" },
+      { name: "Home", path: "/" },
+      { name: "About", path: "/about" },
+      { name: "Gallery", path: "/gallery" },
+      { name: "Videos", path: "/videos" },
+      { name: "Testimonials", path: "/testimonials" },
+      { name: "Contact", path: "/contact" },
     ],
   };
   const handleNewsletterSubmit = async (e) => {
@@ -102,12 +103,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.path}
                     className="text-gray-400 hover:text-gold-500 transition-colors duration-300"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -121,12 +122,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {footerLinks.quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.path}
                     className="text-gray-400 hover:text-gold-500 transition-colors duration-300"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

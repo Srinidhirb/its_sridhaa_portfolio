@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { HiStar } from 'react-icons/hi';
 
 const Testimonials = () => {
@@ -108,12 +109,12 @@ const Testimonials = () => {
           className="text-center mt-16"
         >
           <p className="text-gray-400 mb-6 text-lg">Ready to create your own story?</p>
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="inline-block px-10 py-4 luxury-gradient text-luxury-darker font-semibold rounded-full hover:shadow-xl hover:shadow-gold-500/40 transition-all duration-300 hover:scale-105"
           >
             Start Your Journey
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
